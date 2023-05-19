@@ -684,23 +684,23 @@
                 </div>
                 <!-- End Contact details -->
                 <div class="col-md-7  p-3 ">
-                            <form name="sentMessage" id="contactForm" novalidate>
+                            <form name="sentMessage" id="contactForm"  onsubmit="return formValidation()">
                         <div class="form-group">
                             <h4 class="">Contact </h4>
-                            <input type="text" class="form-control" placeholder="Your Name" id="name" required data-validation-required-message="Please enter your name.">
+                            <input type="text" class="form-control" name="fcheck" required placeholder="Your Name">
+               
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" required placeholder="Your Email" >
+                   
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" required placeholder="Your Phone" >
                             <p class="help-block text-white"></p>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" id="email" required data-validation-required-message="Please enter your email address.">
-                            <p class="help-block text-white"></p>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" class="form-control" placeholder="Your Phone" id="phone" required data-validation-required-message="Please enter your phone number.">
-                            <p class="help-block text-white"></p>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" id="message" required data-validation-required-message="Please enter a message."></textarea>
-                            <p class="help-block text-white"></p>
+                            <textarea class="form-control" required placeholder="Your Message"  style="resize:none"></textarea>
+                            
                         </div>
                         <div id="success"></div>
                         <button type="submit" class="btn btn-info text-center">Send Message</button>
@@ -751,7 +751,81 @@ function msgprint()
           alert("Print the profile demo");
           print();
      }
-            
+//             form validation
+	var fcheck=true;
+	var mcheck=true;
+	var input=document.querySelectorAll("input[type='text']");
+	var span = document.createElement("span");
+		var span1 = document.createElement("span");
+		function formValidation()
+           {
+        
+		if(input[0].value=="")
+		{
+			fcheck=false;
+			input[0].style="border:3px solid red";
+			span.innerHTML="<br/>not empty first name";
+			input[0].parentNode.appendChild(span);
+		}
+		else if(isNaN(input[0].value)==false)
+		{
+			 
+			fcheck=false;
+			input[0].style="border:3px solid red";
+			span.innerHTML="<br/>first name not be number";
+			input[0].parentNode.appendChild(span);
+		}
+		else if(input[0].value.length<3)
+		{
+			fcheck=false;
+			input[0].style="border:3px solid red";
+			span.innerHTML="<br/>first name must be 3 charater";
+			input[0].parentNode.appendChild(span);
+		}
+		else
+		{
+			fcheck=true;
+			span.innerHTML="";
+			input[0].style="border:3px solid green";
+
+		}
+		   if(input[2].value=="")
+		{
+			mcheck=false;
+			input[2].style="border:3px solid red";
+			span2.innerHTML="<br/>not empty Mobile Number";
+			input[2].parentNode.appendChild(span2);
+		}
+		else if(isNaN(input[2].value)==true)
+		{
+			mcheck=false;
+			input[2].style="border:3px solid red";
+			span2.innerHTML="<br/>Mobile Number not be charcter";
+			input[2].parentNode.appendChild(span2);
+		}
+		else if(input[2].value.length<=9)
+		{
+			mcheck=false;
+			input[2].style="border:3px solid red";
+			span2.innerHTML="<br/>Mobile Number 10 digit compalsary";
+			input[2].parentNode.appendChild(span2);
+		}
+		else
+		{
+			mcheck=true;
+			span2.innerHTML="";
+			input[2].style="border:3px solid green";
+
+		}
+		if(fcheck == true && mcheck == true )
+			{
+				return true
+			}
+			else
+			{
+				return false
+			}
+
 
 </script>
     </body>
