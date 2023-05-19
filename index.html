@@ -722,7 +722,7 @@
 
             var currentDate = new Date();
 
-            document.getElementById("date").innerHTML = [currentDate.getDate(), monthNames[currentDate.getMonth()], currentDate.getFullYear()+' '].join(' ');
+            document.getElementById("date").innerHTML = [currentDate.getDate(), monthNames[currentDate.getMonth()], currentDate.getFullYear()+' '].join('/');
             setInterval(showTime, 1000);
             function showTime() {
                 let time = new Date();
@@ -732,10 +732,12 @@
                 let sec = time.getSeconds();
 
                 hour = hour < 10 ? "0" + hour : hour;
+		    var tm=hour>13?'PM':'AM';
+                hour =hour>12?hour-12:hour;
                 min = min < 10 ? "0" + min : min;
                 sec = sec < 10 ? "0" + sec : sec;
 
-                let currentTime = hour + ":" + min + ":" + sec;
+                let currentTime = hour + ":" + min + ":" + sec+" " + tm;
 
                 document.getElementById("clock").innerHTML = currentTime;
             }
